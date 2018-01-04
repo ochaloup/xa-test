@@ -34,7 +34,8 @@ objects:
     runPolicy: Serial
     source:
       git:
-        uri: https://github.com/maschmid/xa-test.git
+        uri: https://github.com/ochaloup/xa-test.git
+        ref: eap7
       type: Git
     strategy:
       sourceStrategy:
@@ -305,7 +306,7 @@ objects:
           - name: JBOSS_MODULES_SYSTEM_PKGS_APPEND
             value: org.jboss.byteman
           - name: JAVA_OPTS_APPEND
-            value: -javaagent:${JBOSS_HOME}/byteman.jar=script:/tmp/src/src/main/scripts/xa6.btm
+            value: -javaagent:${JBOSS_HOME}/byteman.jar=script:/tmp/src/src/main/scripts/xa7.btm
           - name: TESTDBA_PASSWORD
             value: testpwd
           - name: TESTDBA_DATABASE
