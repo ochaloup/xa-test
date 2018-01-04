@@ -9,8 +9,8 @@ DO traceln("***** topLevelCommit: Halting for 6 seconds for " + jndiName), delay
 ENDRULE
 
 RULE kill jvm on sigterm
-CLASS ShutdownHook 
-METHOD run
+INTERFACE org.jboss.as.server.logging.ServerLogger
+METHOD suspendingServer
 AT ENTRY
 IF TRUE
 DO traceln("***** killing jvm"), killJVM()
