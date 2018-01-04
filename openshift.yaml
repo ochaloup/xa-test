@@ -34,7 +34,8 @@ objects:
     runPolicy: Serial
     source:
       git:
-        uri: https://github.com/maschmid/xa-test.git
+        uri: https://github.com/ochaloup/xa-test.git
+        ref: eap6
       type: Git
     strategy:
       sourceStrategy:

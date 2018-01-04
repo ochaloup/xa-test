@@ -5,5 +5,14 @@ AT ENTRY
 BIND xares = $0;
 jndiName:String = xares.getJndiName();
 IF TRUE
-DO traceln("***** topLevelCommit: Halting for 3 seconds for " + jndiName), delay(3000)
+DO traceln("***** topLevelCommit: Halting for 5 seconds for " + jndiName), delay(5000)
 ENDRULE
+
+RULE kill jvm on sigterm
+INTERFACE org.jboss.as.server.ServerLogger
+METHOD shutdownHookInvoked
+AT ENTRY
+IF TRUE
+DO traceln("***** killing jvm"), killJVM()
+ENDRULE
+
