@@ -14,7 +14,35 @@ parameters:
   displayName: Image
   name: IMAGE
   value: registry.access.redhat.com/jboss-eap-6/eap64-openshift:1.6
+- description: Namespace
+  displayName: namespace
+  name: NAMESPACE
+  value: myproject
+  required: true
 objects:
+- apiVersion: v1
+  kind: Role
+  metadata:
+    name: pods-listing
+  rules:
+  - apiGroups: null
+    attributeRestrictions: null
+    resources: ["pods", "pods/log"]
+    verbs: ["list", "get"]
+- apiVersion: v1
+  kind: RoleBinding
+  metadata:
+    name: default
+    annotations:
+      description: "Default service account"
+  subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: ${NAMESPACE}
+  roleRef:
+    kind: Role
+    name: pods-listing
+    namespace: ${NAMESPACE}
 - apiVersion: v1
   kind: ImageStream
   metadata:
@@ -310,6 +338,8 @@ objects:
             value: testpwd
           - name: TESTDBA_DATABASE
             value: testdba
+          - name: SCRIPT_DEBUG
+            value: "true"
           image: ${APPLICATION_NAME}
           imagePullPolicy: Always
           livenessProbe:
@@ -404,6 +434,8 @@ objects:
             value: testpwd
           - name: TESTDBA_DATABASE
             value: testdba
+          - name: SCRIPT_DEBUG
+            value: "true"
           image: ${APPLICATION_NAME}
           imagePullPolicy: Always
           name: ${APPLICATION_NAME}-migration
