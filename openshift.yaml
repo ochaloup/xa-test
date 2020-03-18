@@ -62,7 +62,8 @@ objects:
     runPolicy: Serial
     source:
       git:
-        uri: https://github.com/maschmid/xa-test.git
+        uri: https://github.com/ochaloup/xa-test.git
+        ref: with-role-to-list
       type: Git
     strategy:
       sourceStrategy:
@@ -349,7 +350,8 @@ objects:
               - -c
               - /opt/eap/bin/livenessProbe.sh
             failureThreshold: 3
-            periodSeconds: 10
+            initialDelaySeconds: 120
+            periodSeconds: 300
             successThreshold: 1
             timeoutSeconds: 1
           name: ${APPLICATION_NAME}
@@ -363,7 +365,8 @@ objects:
               - -c
               - /opt/eap/bin/readinessProbe.sh
             failureThreshold: 3
-            periodSeconds: 10
+            initialDelaySeconds: 120
+            periodSeconds: 300
             successThreshold: 1
             timeoutSeconds: 1
           resources: {}
