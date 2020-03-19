@@ -354,7 +354,7 @@ objects:
               - -c
               - /opt/eap/bin/livenessProbe.sh
             failureThreshold: 3
-            initialDelaySeconds: 120
+            initialDelaySeconds: 20
             periodSeconds: 300
             successThreshold: 1
             timeoutSeconds: 1
@@ -369,7 +369,7 @@ objects:
               - -c
               - /opt/eap/bin/readinessProbe.sh
             failureThreshold: 3
-            initialDelaySeconds: 120
+            initialDelaySeconds: 20
             periodSeconds: 300
             successThreshold: 1
             timeoutSeconds: 1
