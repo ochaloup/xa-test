@@ -441,11 +441,9 @@ objects:
             value: testpwd
           - name: TESTDBA_DATABASE
             value: testdba
-          - name: OPENSHIFT_KUBE_PING_NAMESPACE
-            value: ${NAMESPACE}
-          - name: KUBERNETES_NAMESPACE
-            value: ${NAMESPACE}
           - name: SCRIPT_DEBUG
+            value: "true"
+          - name: DISABLE_EMBEDDED_JMS_BROKER
             value: "true"
           image: ${APPLICATION_NAME}
           imagePullPolicy: Always
